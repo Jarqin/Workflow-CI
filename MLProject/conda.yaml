@@ -1,0 +1,12 @@
+name: anime_ranking
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - scikit-learn=1.4.0
+  - pandas=2.0.3
+  - numpy=1.24.3
+  - imbalanced-learn=0.12.0
+  - pip:
+      - mlflow==2.13.0
