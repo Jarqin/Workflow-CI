@@ -25,5 +25,7 @@ jobs:
       - name: Install MLflow
         run: pip install mlflow
 
-      - name: Run MLflow project
-        run: mlflow run MLProject -P n_estimators=150 -P max_depth=12
+      - name: Run model training manually
+        run: |
+          conda activate anime-rank-env
+          python MLProject/modelling.py --n_estimators 150 --max_depth 12
