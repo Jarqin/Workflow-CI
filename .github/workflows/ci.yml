@@ -25,7 +25,10 @@ jobs:
       - name: Install MLflow
         run: pip install mlflow
 
-      - name: Run model training manually
+      - name: Init Conda & Activate Environment
+        shell: bash
         run: |
+          conda init bash
+          source ~/.bashrc
           conda activate anime-rank-env
           python MLProject/modelling.py --n_estimators 150 --max_depth 12
