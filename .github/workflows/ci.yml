@@ -28,6 +28,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install mlflow
+          pip install mlflow scikit-learn pandas numpy imbalanced-learn matplotlib seaborn
 
       - name: Run mlflow project
         run: |
