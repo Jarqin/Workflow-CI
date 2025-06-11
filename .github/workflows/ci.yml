@@ -32,3 +32,9 @@ jobs:
           source ~/.bashrc
           conda activate anime-rank-env
           python MLProject/modelling.py --n_estimators 150 --max_depth 12
+          
+      - name: Get latest MLflow run_id
+        run: |
+          echo "Fetching run_id..."
+          RUN_ID=$(mlflow runs list --experiment-name anime-rank-project --order-by start_time desc | awk 'NR==2 {print $1}')
+          echo "Latest run_id: $RUN_ID"
