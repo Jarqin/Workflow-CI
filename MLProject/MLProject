@@ -1,5 +1,7 @@
-name: anime_rank_classifier
+name: anime-rank-ci
+
 conda_env: conda.yaml
+
 entry_points:
   main:
     parameters:
