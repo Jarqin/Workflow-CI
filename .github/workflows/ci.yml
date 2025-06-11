@@ -1,31 +1,29 @@
-name: MLflow CI Pipeline
+name: Train Anime Rank Model
 
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+    paths:
+      - "MLProject/**"
+      - ".github/workflows/**"
+  workflow_dispatch:
 
 jobs:
-  train-model:
+  train:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v4
-      
-    - name: Set up Miniconda
-      uses: conda-incubator/setup-miniconda@v3
-      with:
-        python-version: "3.10"
-        activate-environment: mlflow-env
-        auto-activate-base: false
-        
-    - name: Install dependencies
-      shell: bash
-      run: |
-        conda install -c conda-forge python=3.10 mlflow=2.13.0 scikit-learn=1.4.0 pandas=2.0.3 numpy=1.24.3 imbalanced-learn=0.12.0
-        pip install mlflow-skinny
-        
-    - name: Run MLflow Project
-      shell: bash
-      run: mlflow run MLProject --experiment-name="Anime Ranking CI" -P n_estimators=100 -P max_depth=10
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Miniconda
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: anime-rank-env
+          environment-file: MLProject/conda.yaml
+          auto-activate-base: false
+
+      - name: Install MLflow
+        run: pip install mlflow
+
+      - name: Run MLflow project
+        run: mlflow run MLProject -P n_estimators=150 -P max_depth=12
