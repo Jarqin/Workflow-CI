@@ -25,13 +25,15 @@ jobs:
       - name: Install MLflow
         run: pip install mlflow
 
-      - name: Run mlflow project
+      - name: Init Conda & Activate Environment
         shell: bash
         run: |
-          mlflow run MLProject -P n_estimators=150 -P max_depth=12
-
+          conda init bash
+          source ~/.bashrc
+          conda activate anime-rank-env
+          python MLProject/modelling.py --n_estimators 150 --max_depth 12
+          
       - name: Get latest MLflow run_id
-        shell: bash
         run: |
           echo "Fetching run_id..."
           RUN_ID=$(mlflow runs list --experiment-name anime-rank-project --order-by start_time desc | awk 'NR==2 {print $1}')
