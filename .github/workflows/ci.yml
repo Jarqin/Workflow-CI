@@ -31,7 +31,7 @@ jobs:
 
       - name: Run mlflow project
         run: |
-          mlflow run MLProject -P n_estimators=150 -P max_depth=12
+          mlflow run MLProject -P n_estimators=150 -P max_depth=12 --env-manager=local
 
       - name: Get latest MLflow run_id
         run: |
