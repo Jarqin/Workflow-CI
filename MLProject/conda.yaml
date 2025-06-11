@@ -1,12 +1,13 @@
-name: anime_ranking
+name: anime-rank-env
 channels:
+  - defaults
   - conda-forge
 dependencies:
   - python=3.10
+  - pandas
+  - numpy
+  - scikit-learn
+  - imbalanced-learn
   - pip
-  - scikit-learn=1.4.0
-  - pandas=2.0.3
-  - numpy=1.24.3
-  - imbalanced-learn=0.12.0
   - pip:
-      - mlflow-skinny==2.13.0
+      - mlflow
