@@ -9,4 +9,4 @@ dependencies:
   - numpy=1.24.3
   - imbalanced-learn=0.12.0
   - pip:
-      - mlflow==2.13.0
+      - mlflow-skinny==2.13.0
