@@ -8,7 +8,7 @@ from imblearn.over_sampling import SMOTE
 from imblearn.pipeline import Pipeline as imbpipeline
 
 def load_data():
-    df = pd.read_csv('MLProject/dataset_anime_clean.csv')
+    df = pd.read_csv('dataset_anime_clean.csv')
     df = df.drop(['anime_id', 'name', 'rank'], axis=1, errors='ignore')
     df = df.dropna()
     X = df.drop('rank_encoded', axis=1)
