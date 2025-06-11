@@ -15,24 +15,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Miniconda
-        uses: conda-incubator/setup-miniconda@v2
+      - name: Set up Python 3.12.7
+        uses: actions/setup-python@v5
         with:
-          activate-environment: anime-rank-env
-          environment-file: MLProject/conda.yaml
-          auto-activate-base: false
+          python-version: 3.12.7
 
-      - name: Install MLflow
-        run: pip install mlflow
-
-      - name: Init Conda & Activate Environment
-        shell: bash
+      - name: Check Env
         run: |
-          conda init bash
-          source ~/.bashrc
-          conda activate anime-rank-env
-          python MLProject/modelling.py --n_estimators 150 --max_depth 12
-          
+          python --version
+          pip --version
+
+      - name: Install dependencies
+        run: |
+          pip install mlflow
+
+      - name: Run mlflow project
+        run: |
+          mlflow run MLProject -P n_estimators=150 -P max_depth=12
+
       - name: Get latest MLflow run_id
         run: |
           echo "Fetching run_id..."
